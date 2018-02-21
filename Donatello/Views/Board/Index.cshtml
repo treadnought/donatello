@@ -4,6 +4,15 @@
 }
 
 <div class="container">
+    @if (Model.Columns.Count > 0)
+    {
+        <a asp-controller="Board"
+           asp-action="AddCard"
+           asp-route-id="@Model.Id"
+           class="waves-effect waves-light btn">
+            Add Card
+        </a>
+    }
     <div class="row">
         <h2>@Model.BoardTitle</h2>
     </div>

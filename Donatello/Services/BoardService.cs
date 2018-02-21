@@ -28,6 +28,7 @@ namespace Donatello.Services
                .ThenInclude(c => c.Cards)
                .FirstOrDefault(x => x.Id == id);
 
+            model.Id = board.Id;
             model.BoardTitle = board.Title;
 
             foreach (var column in board.Columns)
@@ -112,6 +113,24 @@ namespace Donatello.Services
             newBoard.Columns.Add(defaultColumn3);
 
             context.Add(newBoard);
+            context.SaveChanges();
+        }
+
+        public void AddCard(NewCard vm)
+        {
+            var board = context.Boards
+                .Include(b => b.Columns)
+                .SingleOrDefault(x => x.Id == vm.Id);
+
+            var firstColumn = board.Columns.FirstOrDefault();
+            if (firstColumn == null)
+            {
+                firstColumn = new Column { Title = "ToDo" };
+                board.Columns.Add(firstColumn);
+            }
+
+            firstColumn.Cards.Add(new Card { Contents = vm.Contents });
+
             context.SaveChanges();
         }
     }
