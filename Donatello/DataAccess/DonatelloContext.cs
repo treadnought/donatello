@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Donatello.DataAccess
 {
-   public class DonatelloContext : DbContext
-   {
-      public DonatelloContext(DbContextOptions<DonatelloContext> options)
-          : base(options)
-      {
+    public class DonatelloContext : DbContext
+    {
+        public DonatelloContext(DbContextOptions<DonatelloContext> options)
+            : base(options)
+        {
 
-      }
+        }
 
-      public DbSet<Board> Boards { get; set; }
-      public DbSet<Column> Columns { get; set; }
-      public DbSet<Card> Cards { get; set; }
-   }
+        public DbSet<Board> Boards { get; set; }
+        public DbSet<Column> Columns { get; set; }
+        public DbSet<Card> Cards { get; set; }
+    }
 }

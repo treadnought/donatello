@@ -8,6 +8,7 @@ namespace Donatello.ViewModels
 {
     public class BoardView
     {
+        public string BoardTitle { get; set; }
         public List<Column> Columns { get; set; } = new List<Column>();
         public class Column
         {

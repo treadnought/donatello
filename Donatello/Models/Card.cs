@@ -10,5 +10,7 @@ namespace Donatello.Models
     {
       public int Id { get; set; }
       public string Contents { get; set; }
+      public int ColumnId { get; set; }
+      public Column Column { get; set; }
    }
 }

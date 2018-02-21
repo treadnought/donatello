@@ -29,7 +29,7 @@ namespace Donatello.Controllers
          return View();
       }
 
-      [HttpPost("/createbetter")]
+      [HttpPost("/create")]
       public IActionResult Create(NewBoard vm)
       {
          boardService.AddBoard(vm);
