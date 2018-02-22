@@ -33,8 +33,12 @@ namespace Donatello.Controllers
         [HttpPost]
         public IActionResult AddCard(NewCard vm)
         {
-            boardService.AddCard(vm);
-            return RedirectToAction(nameof(Index), new { id = vm.Id });
+            if (ModelState.IsValid)
+            {
+                boardService.AddCard(vm);
+                return RedirectToAction(nameof(Index), new { id = vm.Id });
+            }
+            return View(vm);
         }
     }
 }

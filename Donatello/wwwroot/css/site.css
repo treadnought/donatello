@@ -1,0 +1,7 @@
+﻿
+/* csslint ignore:start */
+input[type=text].input-validation-error {
+    border-bottom: 2px solid #f00;
+}
+/* csslint ignore:end */
+

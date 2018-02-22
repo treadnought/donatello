@@ -8,32 +8,36 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Donatello.Controllers
 {
-   public class HomeController : Controller
-   {
-      private readonly BoardService boardService;
+    public class HomeController : Controller
+    {
+        private readonly BoardService boardService;
 
-      public HomeController(BoardService boardService)
-      {
-         this.boardService = boardService;
-      }
-      public IActionResult Index()
-      {
-         BoardList model = boardService.ListBoards();
+        public HomeController(BoardService boardService)
+        {
+            this.boardService = boardService;
+        }
+        public IActionResult Index()
+        {
+            BoardList model = boardService.ListBoards();
 
-         return View(model);
-      }
+            return View(model);
+        }
 
-      [HttpGet("/create")]
-      public IActionResult Create()
-      {
-         return View();
-      }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-      [HttpPost("/create")]
-      public IActionResult Create(NewBoard vm)
-      {
-         boardService.AddBoard(vm);
-         return RedirectToAction(nameof(Index));
-      }
-   }
+        [HttpPost]
+        public IActionResult Create(NewBoard vm)
+        {
+            if (ModelState.IsValid)
+            {
+                boardService.AddBoard(vm);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(vm);
+        }
+    }
 }
