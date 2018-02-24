@@ -1,0 +1,33 @@
+﻿@model Donatello.ViewModels.CardDetails
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <h2>Details</h2>
+    <div class="row">
+        <form class="col s12" method="post" asp-controller="Card" asp-action="Update">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Card contents"
+                           asp-for="Contents" />
+                    <label asp-for="Contents">Contents</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea placeholder="Notes"
+                              asp-for="Notes"
+                              class="materialize-textarea">
+                    </textarea>
+                    <label asp-for="Notes">Notes</label>
+                </div>
+            </div>
+            <div class="row">
+                <input asp-for="Id" type="hidden" />
+                <input type="submit" value="Save" class="btn" />
+            </div>
+        </form>
+    </div>
+</div>

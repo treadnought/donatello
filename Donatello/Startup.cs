@@ -22,6 +22,7 @@ namespace Donatello
             var connection = @"Server=(localdb)\mssqllocaldb;Database=Donatello;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<DonatelloContext>(options => options.UseSqlServer(connection));
             services.AddScoped<BoardService>();
+            services.AddScoped<CardService>();
             services.AddMvc(options =>
             {
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());

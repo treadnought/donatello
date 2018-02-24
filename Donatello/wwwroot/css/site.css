@@ -3,5 +3,10 @@
 input[type=text].input-validation-error {
     border-bottom: 2px solid #f00;
 }
+
+.toasty {
+    background-color: forestgreen;
+}
 /* csslint ignore:end */
+
 

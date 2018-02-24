@@ -11,9 +11,10 @@ using System;
 namespace Donatello.Migrations
 {
     [DbContext(typeof(DonatelloContext))]
-    partial class DonatelloContextModelSnapshot : ModelSnapshot
+    [Migration("20180223045648_AddCardNotes")]
+    partial class AddCardNotes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

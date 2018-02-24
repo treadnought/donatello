@@ -29,3 +29,11 @@
     </div>
 </body>
 </html>
+@if (TempData.ContainsKey("Message"))
+{
+    <script type="text/javascript">
+        Materialize.toast('@TempData["Message"]', 3000, 'toasty')
+    </script>
+
+}
+
