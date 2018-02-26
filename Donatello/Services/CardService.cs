@@ -1,5 +1,7 @@
 ﻿using Donatello.DataAccess;
 using Donatello.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +20,30 @@ namespace Donatello.Services
         }
         public CardDetails GetCardDetails(int id)
         {
-            var model = new CardDetails();
+            var card = _context.Cards
+                .Include(c => c.Column)
+                .SingleOrDefault(x => x.Id == id);
 
-            var card = _context.Cards.SingleOrDefault(x => x.Id == id);
             if (card == null) return new CardDetails();
+
+            var board = _context.Boards
+                .Include(b => b.Columns)
+                .SingleOrDefault(b => b.Id == card.Column.BoardId);
+
+            var availableColumns = board.Columns
+                .Select(x => new SelectListItem
+                {
+                    Text = x.Title,
+                    Value = x.Id.ToString()
+                });
+
             return new CardDetails
             {
                 Id = card.Id,
                 Contents = card.Contents,
-                Notes = card.Notes
+                Notes = card.Notes,
+                Columns = availableColumns.ToList(),
+                Column = card.ColumnId
             };
         }
 
@@ -35,6 +52,7 @@ namespace Donatello.Services
             var card = _context.Cards.SingleOrDefault(x => x.Id == details.Id);
             card.Contents = details.Contents;
             card.Notes = details.Notes;
+            card.ColumnId = details.Column;
 
             _context.SaveChanges();
         }

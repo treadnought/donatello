@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <h2>Add Card</h2>
-        <form asp-action="AddCard" asp-controller="Board">
+        <form method="post" asp-action="AddCard" asp-controller="Board">
             <div asp-validation-summary="All" class="text-danger"></div>
             <label asp-for="Contents"></label>
             <input type="text" asp-for="Contents" />

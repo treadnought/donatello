@@ -3,6 +3,11 @@
     ViewData["Title"] = "Details";
 }
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+</script>
 <div class="container">
     <h2>Details</h2>
     <div class="row">
@@ -25,9 +30,20 @@
                 </div>
             </div>
             <div class="row">
+                <div class="input-field col s12">
+                    <select asp-for="Column" asp-items="Model.Columns"></select>
+                    <label asp-for="Column">Column</label>
+                </div>
+            </div>
+            <br /><br />
+            <br /><br />
+            <br /><br />
+            <div class="row">
                 <input asp-for="Id" type="hidden" />
                 <input type="submit" value="Save" class="btn" />
             </div>
         </form>
     </div>
 </div>
+
+

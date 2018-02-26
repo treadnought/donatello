@@ -5,7 +5,7 @@ input[type=text].input-validation-error {
 }
 
 .toasty {
-    background-color: forestgreen;
+    background-color: lightgreen;
 }
 /* csslint ignore:end */
 
