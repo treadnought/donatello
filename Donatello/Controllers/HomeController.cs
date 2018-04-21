@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Donatello.Services;
 using Donatello.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Donatello.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly BoardService boardService;

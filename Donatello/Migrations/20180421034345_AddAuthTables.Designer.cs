@@ -11,9 +11,10 @@ using System;
 namespace Donatello.Migrations
 {
     [DbContext(typeof(DonatelloContext))]
-    partial class DonatelloContextModelSnapshot : ModelSnapshot
+    [Migration("20180421034345_AddAuthTables")]
+    partial class AddAuthTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
