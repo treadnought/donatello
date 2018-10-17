@@ -21,6 +21,48 @@ namespace Donatello.Controllers
             _signInManager = signInManager;
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = vm.Email,
+                    Email = vm.Email,
+                };
+
+                var result = await _signInManager.PasswordSignInAsync(
+                    vm.Email, 
+                    vm.Password, 
+                    vm.RememberMe, 
+                    lockoutOnFailure: false);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(nameof(HomeController.Index), "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login");
+                }
+            }
+
+            return View(vm);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Login));
+        }
+
         public IActionResult Register()
         {
             return View();
