@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Donatello.Infrastructure;
 using Donatello.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -26,18 +23,13 @@ namespace Donatello.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
-                {
-                    UserName = vm.Email,
-                    Email = vm.Email,
-                };
-
                 var result = await _signInManager.PasswordSignInAsync(
                     vm.Email, 
                     vm.Password, 
